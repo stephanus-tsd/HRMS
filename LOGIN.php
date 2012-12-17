@@ -9,7 +9,7 @@
 <div>
 	<div>Login</div>
 	<div>
-        <form method="post">
+        <form method="post" action="login_verification.php">
             <table>
             	<tr>
                 	<td>Username</td>

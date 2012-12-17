@@ -22,6 +22,13 @@ class MySQL {
 		$this->db = mysql_select_db($this->database) or die('Cannot select database');
 	}
 	
+	public function login() {
+		$query = "SELECT nama FROM karyawan WHERE username = '" + $this->user + "' AND password = '" + $this->password + "'";
+		$this->result = mysql_query($query);
+		if ($this->result) echo $this->result;
+		else echo "gagal";
+	}
+	
 	public function execute($query) {
 		$this->result = mysql_query($query);
 		if ($this->result) echo "Query berhasil<br />";
