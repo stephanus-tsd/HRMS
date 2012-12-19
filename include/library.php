@@ -1,32 +1,30 @@
 <?php
-class MySQL {
+class mysql {
 	private $db;
 	private $host;
 	private $user;
-	private $password;
-	private $database;
+	private $pass;
+	private $datab;
 	private $query;
 	private $result;
 	private $num_rows;
 	private $connect;
 	
 	public function __construct($host,$user,$password,$database) {
-		$this->$host = $host;
-		$this->$user = $user;
-		$this->$password = $password;
-		$this->$database = $database;
+		$this->host = $host;
+		$this->user = $user;
+		$this->pass = $password;
+		$this->datab = $database;
 	}
 	
 	public function connect() {
-		$this->connect = mysql_connect($this->host,$this->user,$this->password) or die('Cannot connect');
-		$this->db = mysql_select_db($this->database) or die('Cannot select database');
+		$this->connect = mysql_connect($this->host,$this->user,$this->pass) or die('Cannot connect');
+		$this->db = mysql_select_db($this->datab) or die('Cannot select database');
 	}
 	
-	public function login() {
-		$query = "SELECT nama FROM karyawan WHERE username = '" + $this->user + "' AND password = '" + $this->password + "'";
-		$this->result = mysql_query($query);
-		if ($this->result) echo $this->result;
-		else echo "gagal";
+	public function login($username,$password) {
+		$word = "SELECT jabatan FROM karyawan WHERE username = '$username' AND password = '$password'";
+		$this->result = mysql_query($word);
 	}
 	
 	public function execute($query) {
@@ -36,9 +34,8 @@ class MySQL {
 	}
 	
 	public function get_array() {
-		while($row = mysql_fetch_array($this->result))
-		{
-			$array[] =  $row;
+		foreach(mysql_fetch_array($this->result) as $key => $value) {
+			$array[$key] = $value;
 		}
 		return $array;
 	}
@@ -51,7 +48,24 @@ class MySQL {
 		mysql_close($this->connect);
 	}
 	
-	public function signUp() {
+	public function signUp($nama,$jabatan,$alamat,$noTelp,$username,$password) {
+		if ($jabatan == "admin") {
+			$gaji = 50000;
+			$jumlahCuti = 10;
+		}
+		else if ($jabatan == "boss") {
+			$gaji = 30000;
+			$jumlahCuti = 5;
+		}
+		else {
+			$gaji = 10000;
+			$jumlahCuti = 3;
+		}
+		$query = "INSERT INTO karyawan(username,password,nama,jabatan,alamat,noTelp,gaji,jumlahCuti) VALUES ('$username','$password','$nama','$jabatan','$alamat','$noTelp','$gaji','$jumlahCuti')";
+		if (mysql_query($query)) {
+			return "berhasil";
+		}
+		else return "gagal";
 	}
 }
 ?>

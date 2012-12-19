@@ -5,8 +5,16 @@ session_start();
 $user = $_POST['user'];
 $pass = $_POST['pass'];
 
-$mysql = new MySQL("localhost","","","hrm");
-$mysql->connect();
+$sql = new mysql("localhost","root","","hrm");
+$sql->connect();
 
-$mysql->login();
+$sql->login($user,$pass);
+$hasil = $sql->get_array();
+$sql->close_connection();
+if ($hasil["jabatan"] = "admin") {
+	echo "admin";
+}
+else {
+	echo "gatau";
+}
 ?>
