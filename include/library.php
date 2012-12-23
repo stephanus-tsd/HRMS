@@ -29,13 +29,15 @@ class mysql {
 	
 	public function execute($query) {
 		$this->result = mysql_query($query);
-		if ($this->result) echo "Query berhasil<br />";
-		else echo "Query gagal<br />";
+		if ($this->result) return "berhasil";
+		else return "gagal";
 	}
 	
 	public function get_array() {
-		foreach(mysql_fetch_array($this->result) as $key => $value) {
-			$array[$key] = $value;
+		while($row = mysql_fetch_array($this->result)) {
+			foreach($row as $key => $value) {
+				$array[$key][] = $value;
+			}
 		}
 		return $array;
 	}
@@ -66,6 +68,27 @@ class mysql {
 			return "berhasil";
 		}
 		else return "gagal";
+	}
+	
+	public function editEmployee($nama,$jabatan,$alamat,$noTelp,$username,$password) {
+		if ($jabatan == "admin") {
+			$gaji = 50000;
+			$jumlahCuti = 10;
+		}
+		else if ($jabatan == "boss") {
+			$gaji = 30000;
+			$jumlahCuti = 5;
+		}
+		else {
+			$gaji = 10000;
+			$jumlahCuti = 3;
+		}
+		$query = "UPDATE karyawan SET nama = '$nama',jabatan = '$jabatan',alamat = '$alamat',noTelp = '$noTelp',gaji = '$gaji',jumlahCuti = '$jumlahCuti',password = '$password' WHERE username = '$username'";
+		if (mysql_query($query)) {
+			return "berhasil";
+		}
+		else 
+			return "gagal";
 	}
 }
 ?>

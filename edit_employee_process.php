@@ -11,13 +11,13 @@ $password = $_POST["password"];
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
-$result = $sql->signUp($nama,$jabatan,$alamat,$noTelp,$username,$password);
+$hasil = $sql->editEmployee($nama,$jabatan,$alamat,$noTelp,$username,$password);
 if ($result == "berhasil") {
 	echo "Insert berhasil <br />";
-	echo "<a href=''>Back to Home</a>";
+	echo "<a href='employee_list.php'>Back to Employee List</a>";
 }
 else if ($result == "gagal") {
 	echo "Insert gagal <br />";
-	echo "<a href=''>Back to Home</a>";
+	echo "<a href='employee_list.php'>Back to Employee List</a>";
 }
 ?>

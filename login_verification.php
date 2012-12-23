@@ -11,7 +11,7 @@ $sql->connect();
 $sql->login($user,$pass);
 $hasil = $sql->get_array();
 $sql->close_connection();
-if ($hasil["jabatan"] = "admin") {
+if ($hasil["jabatan"][0] = "admin") {
 	echo "admin";
 }
 else {
