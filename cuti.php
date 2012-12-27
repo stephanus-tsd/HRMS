@@ -12,7 +12,7 @@
 	<table>
     	<tr>
         	<td>
-            	<input type="text"
+            	<input value="Tanggal Cuti" name="dateMDP" id="dateMDP" type="text" disabled="disabled" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
             </td>
         </tr>
     </table>

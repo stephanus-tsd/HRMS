@@ -90,5 +90,14 @@ class mysql {
 		else 
 			return "gagal";
 	}
+	
+	public function deleteEmployee($username) {
+		$query = "DELETE FROM karyawan WHERE username = '$username'";
+		if (mysql_query($query)) {
+			return "berhasil";
+		}
+		else
+			return "gagal";
+	}
 }
 ?>

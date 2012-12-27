@@ -58,9 +58,9 @@ Masukkan username dari karyawan yang hendak di-edit : <input type="text" name="u
 <div>
 <fieldset>
 <legend>Delete Karyawan</legend>
-<form method="post">
+<form method="post" action="delete_employee.php">
 Masukkan username dari karyawan yang hendak di-delete : <input type="text" name="user" />
-<input type="submit" value="Delete" onclick="" />
+<input type="submit" value="Delete" />
 </form>
 </fieldset>
 </div>
