@@ -46,6 +46,9 @@ $numrows = $sql->get_num_rows();
 	}
 	?>
 </table>
+<div>
+<form method="post"
+</div>
 </div>
 <div>
 <fieldset>
@@ -58,7 +61,7 @@ Masukkan username dari karyawan yang hendak di-edit : <input type="text" name="u
 <div>
 <fieldset>
 <legend>Delete Karyawan</legend>
-<form method="post" action="delete_employee.php">
+<form method="post">
 Masukkan username dari karyawan yang hendak di-delete : <input type="text" name="user" />
 <input type="submit" value="Delete" />
 </form>
