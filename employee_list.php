@@ -15,6 +15,32 @@ $numrows = $sql->get_num_rows();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Employee List</title>
 <script type="text/javascript">
+function deleteFunc() {
+	var xmlhttp;
+	var user = document.getElementById("inputUserDelete").value;
+	
+	if(window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	}
+	else {
+		xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
+	}
+	
+	xmlhttp.open("GET","delete_employee.php?user="+user, true);
+	xmlhttp.send(null);
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			status = xmlhttp.responseText;
+			if(status == "OK") {
+				alert("Delete berhasil");
+			}
+			else {
+				alert("Delete gagal");
+			}
+		}
+	}
+}
 </script>
 </head>
 
@@ -62,8 +88,8 @@ Masukkan username dari karyawan yang hendak di-edit : <input type="text" name="u
 <fieldset>
 <legend>Delete Karyawan</legend>
 <form method="post">
-Masukkan username dari karyawan yang hendak di-delete : <input type="text" name="user" />
-<input type="submit" value="Delete" />
+Masukkan username dari karyawan yang hendak di-delete : <input type="text" name="user" id="inputUserDelete" />
+<input type="submit" value="Delete" onclick="deleteFunc()" />
 </form>
 </fieldset>
 </div>
