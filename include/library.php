@@ -23,7 +23,7 @@ class mysql {
 	}
 	
 	public function login($username,$password) {
-		$word = "SELECT jabatan FROM karyawan WHERE username = '$username' AND password = '$password'";
+		$word = "SELECT nama,jabatan FROM karyawan WHERE username = '$username' AND password = '$password'";
 		$this->result = mysql_query($word);
 	}
 	

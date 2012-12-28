@@ -3,7 +3,7 @@ include "include/library.php";
 session_start();
 
 $user = $_POST['user'];
-$pass = $_POST['pass'];
+$pass = md5($_POST['pass']);
 
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
@@ -11,7 +11,11 @@ $sql->connect();
 $sql->login($user,$pass);
 $hasil = $sql->get_array();
 $sql->close_connection();
-if ($hasil["jabatan"][0] = "admin") {
+
+$_SESSION['nama'] = $hasil['nama'][0];
+$_SESSION['jabatan'] = $hasil['jabatan'][0];
+
+if ($hasil["jabatan"][0] == "admin") {
 	echo "admin";
 }
 else {

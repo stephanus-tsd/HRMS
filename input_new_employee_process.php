@@ -6,7 +6,7 @@ $jabatan = $_POST["jabatan"];
 $alamat = $_POST["alamat"];
 $noTelp = $_POST["noTelp"];
 $username = $_POST["username"];
-$password = $_POST["password"];
+$password = md5($_POST["password"]);
 
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();

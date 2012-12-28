@@ -3,7 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<script type='Text/JavaScript' src='jscript/scw.js'></script>
+<script type='Text/JavaScript' src='include/scw.js'></script>
+
+<script type="text/javascript">
+function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+	function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+
+</script>
 </head>
 
 <body>
@@ -11,8 +17,11 @@
 	<form>
 	<table>
     	<tr>
-        	<td>
-            	<input value="Tanggal Cuti" name="dateMDP" id="dateMDP" type="text" disabled="disabled" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+        	<td>Tanggal Awal Cuti : 
+            	<input value="Tanggal Cuti" name="startDate" id="startDate" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+            </td>
+            <td>Tanggal Akhir Cuti : 
+            	<input value="Tanggal Cuti" name="endDate" id="endDate" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
             </td>
         </tr>
     </table>
