@@ -6,18 +6,18 @@ $jabatan = $_POST["jabatan"];
 $alamat = $_POST["alamat"];
 $noTelp = $_POST["noTelp"];
 $username = $_POST["username"];
-$password = $_POST["password"];
+$password = md5($_POST["password"]);
 
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
-$hasil = $sql->editEmployee($nama,$jabatan,$alamat,$noTelp,$username,$password);
+$result = $sql->editEmployee($nama,$jabatan,$alamat,$noTelp,$username,$password);
 if ($result == "berhasil") {
-	echo "Insert berhasil <br />";
+	echo "Edit berhasil <br />";
 	echo "<a href='employee_list.php'>Back to Employee List</a>";
 }
 else if ($result == "gagal") {
-	echo "Insert gagal <br />";
+	echo "Edit gagal <br />";
 	echo "<a href='employee_list.php'>Back to Employee List</a>";
 }
 ?>
