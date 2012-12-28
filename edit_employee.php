@@ -1,7 +1,7 @@
 <?php
 include "include/library.php";
 
-$user = $_POST["username"];
+$user = $_GET["username"];
 
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();

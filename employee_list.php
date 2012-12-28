@@ -19,36 +19,42 @@ function deleteFunc() {
 	var xmlhttp;
 	var user = document.getElementById("inputUserDelete").value;
 
-	var r = confirm("Are you sure to delete user : " + user + " ?");
-	if (r == true) {
-		setTimeout(function(){alert("Mohon Tunggu")},2000);
-		if(window.XMLHttpRequest) {
-			xmlhttp = new XMLHttpRequest();
-		}
-		else {
-			xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
-		}
-		
-		xmlhttp.open("GET","delete_employee.php?user="+user, true);
-		xmlhttp.send(null);
-		
-		xmlhttp.onreadystatechange=function() {
-			if (xmlhttp.readyState==4) {
-				if (xmlhttp.status==200) {
-					status = xmlhttp.responseText;
-					if(status == "OK") {
-						//window.location("employee_list.php");
-						alert("Delete berhasil");
-					}
-					else if(status == "Gagal") {
-						alert("Delete gagal");
-					}
+	if (user == "")
+	{
+		alert("Field masih kosong");
+	}
+	else
+	{
+		var r = confirm("Are you sure to delete user : " + user + " ?");
+		if (r == true) {
+			
+			if(window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			}
+			else {
+				xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
+			}
+			
+			xmlhttp.open("GET","delete_employee.php?user="+user, false);
+			xmlhttp.send(null);
+			setTimeout(function(){alert("Mohon Tunggu")},5000);
+			xmlhttp.onreadystatechange=function() {
+				if (xmlhttp.readyState==4 || xmlhttp.status==200) {
+					
+						status = xmlhttp.responseText;
+						if(status == "OK") {
+							alert("Delete berhasil");
+						}
+						else if(status == "Gagal") {
+							alert("Delete gagal");
+						}
+					
 				}
 			}
 		}
-	}
-	else {
-		alert("Delete user dibatalkan");
+		else {
+			alert("Delete user dibatalkan");
+		}
 	}
 }
 
@@ -56,10 +62,28 @@ function editFunc() {
 	var username = document.getElementById("inputUserEdit").value;
 	if (username == "") {
 		alert("Field masih kosong");
-		throw "err30";
 	}
 	else {
-		return;
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+		    }
+		  }
+		xmlhttp.open("GET","edit_employee.php?username="+username,true);
+		xmlhttp.send(null);
+		
+		window.location.assign("edit_employee.php");
 	}
 }
 </script>
@@ -99,8 +123,8 @@ function editFunc() {
 <div>
 <fieldset>
 <legend>Edit Karyawan</legend>
-<form method="post" action="edit_employee.php">
-Masukkan username dari karyawan yang hendak di-edit : <input type="text" name="username" id="inputUserEdit" /> <input type="submit" value="Edit" onclick="editFunc()" />
+<form method="post">
+Masukkan username dari karyawan yang hendak di-edit : <input type="text" name="username" id="inputUserEdit" /> <input type="button" value="Edit" onclick="editFunc()" />
 </form>
 </fieldset>
 </div>
