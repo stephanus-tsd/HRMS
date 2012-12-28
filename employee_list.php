@@ -5,7 +5,8 @@ $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
 $query = "SELECT * FROM karyawan";
-$hasil = $sql->execute($query);
+
+$sql->execute($query);
 $array = $sql->get_array();
 $numrows = $sql->get_num_rows();
 ?>
@@ -15,6 +16,35 @@ $numrows = $sql->get_num_rows();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Employee List</title>
 <script type="text/javascript">
+var key;
+function getKey(kunci) {
+	key = kunci;
+	if (key == "") {
+		document.getElementById("nilai").value = "";
+	}
+}
+
+function showEmployee() {
+	var value = document.getElementById("nilai").value;
+	if (window.XMLHttpRequest)
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+		document.getElementById("hasil").innerHTML=xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("GET","get_employee.php?key="+key+"&value="+value,true);
+	xmlhttp.send();
+}
+
 function deleteFunc() {
 	var xmlhttp;
 	var user = document.getElementById("inputUserDelete").value;
@@ -83,14 +113,14 @@ function editFunc() {
 		xmlhttp.open("GET","edit_employee.php?username="+username,true);
 		xmlhttp.send(null);
 		
-		window.location.assign("edit_employee.php");
+		//window.location.assign("edit_employee.php");
 	}
 }
 </script>
 </head>
 
 <body>
-<div>
+<div id="hasil">
 <table border="1">
 	<tr>
     	<th>Nama</th>
@@ -117,8 +147,20 @@ function editFunc() {
 	}
 	?>
 </table>
-<div>
 </div>
+<div>
+<form>
+Cari berdasarkan : <select name="kolom" onchange="getKey(this.value)">
+<option value="">Semua</option>
+<option value="nama">Nama</option>
+<option value="jabatan">Jabatan</option>
+<option value="username">Username</option>
+<option value="alamat">Alamat</option>
+<option value="noTelp">No. Telp</option>
+</select>
+<input type="text" name="nilai" id="nilai" />
+<input type="button" onclick="showEmployee()" value="Cari" />
+</form>
 </div>
 <div>
 <fieldset>
