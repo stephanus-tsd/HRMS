@@ -7,8 +7,37 @@
 
 <script type="text/javascript">
 function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
-	function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
 
+function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+
+function prosesFunc() {
+	var xmlhttp;
+	var tglAwal = document.getElementById("startDate").value;
+	var tglAkhir = document.getElementById("endDate").value;
+	
+	if (tglAwal == "" || tglAkhir == "") {
+		alert("Ada field yang masih kosong");
+	}
+	else {
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("warning").innerHTML=xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("GET","cuti_process.php?tglAwal="+tglAwal+"&tglAkhir="+tglAkhir,true);
+		xmlhttp.send();
+	}
+}
 </script>
 </head>
 
@@ -18,14 +47,19 @@ function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
 	<table>
     	<tr>
         	<td>Tanggal Awal Cuti : 
-            	<input value="Tanggal Cuti" name="startDate" id="startDate" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+            	<input value="" name="startDate" id="startDate" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
             </td>
             <td>Tanggal Akhir Cuti : 
-            	<input value="Tanggal Cuti" name="endDate" id="endDate" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+            	<input value="" name="endDate" id="endDate" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+            </td>
+            <td>
+            	<input type="button" value="Submit" onclick="prosesFunc()" />
             </td>
         </tr>
     </table>
     </form>
+</div>
+<div id="warning">
 </div>
 </body>
 </html>

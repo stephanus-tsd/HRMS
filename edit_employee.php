@@ -49,7 +49,7 @@ $array = $sql->get_array();
         <tr>
         	<td>Password</td>
             <td>:</td>
-            <td><input type="password" name="password" value="<?php echo $array['password'][0]; ?>" /></td>
+            <td><input type="password" name="password" value="" /></td>
         </tr>
         <tr>
         	<td>&nbsp;</td>

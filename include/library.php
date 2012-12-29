@@ -83,7 +83,14 @@ class mysql {
 			$gaji = 10000;
 			$jumlahCuti = 3;
 		}
-		$query = "UPDATE karyawan SET nama = '$nama',jabatan = '$jabatan',alamat = '$alamat',noTelp = '$noTelp',gaji = '$gaji',jumlahCuti = '$jumlahCuti',password = '$password' WHERE username = '$username'";
+		if ($password == "") {
+			$query = "UPDATE karyawan SET nama = '$nama',jabatan = '$jabatan',alamat = '$alamat',noTelp = '$noTelp',gaji = '$gaji',jumlahCuti = '$jumlahCuti' WHERE username = '$username'";
+		}
+		else {
+			$pass = md5($password);
+			$query = "UPDATE karyawan SET nama = '$nama',jabatan = '$jabatan',alamat = '$alamat',noTelp = '$noTelp',gaji = '$gaji',jumlahCuti = '$jumlahCuti',password = '$pass' WHERE username = '$username'";
+		}
+		
 		if (mysql_query($query)) {
 			return "berhasil";
 		}
