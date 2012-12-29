@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "include/library.php";
 
 $sql = new mysql("localhost","root","","hrm");

@@ -14,6 +14,7 @@ $sql->close_connection();
 
 $_SESSION['nama'] = $hasil['nama'][0];
 $_SESSION['jabatan'] = $hasil['jabatan'][0];
+$_SESSION['user'] = $user;
 
 if ($hasil["jabatan"][0] == "admin") {
 	echo "admin";

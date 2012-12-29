@@ -106,5 +106,30 @@ class mysql {
 		else
 			return "gagal";
 	}
+	
+	public function getJumlahCuti($username) {
+		$query = "SELECT jumlahCuti FROM karyawan WHERE username = '$username'";
+		$this->execute($query);
+		$result = $this->get_array();
+		return $result['jumlahCuti'][0];
+	}
+	
+	public function setJumlahCuti($username,$jmlCuti) {
+		$query = "UPDATE karyawan SET jumlahCuti = '$jmlCuti' WHERE username = '$username'";
+		if (mysql_query($query)) {
+			return "berhasil";
+		}
+		else 
+			return "gagal";
+	}
+	
+	public function setCuti($username,$tglAwal,$cuti) {
+		$query = "INSERT INTO cuti(username,tanggal,lama) VALUES ('$username','$tglAwal','$cuti')";
+		if (mysql_query($query)) {
+			return "berhasil";
+		}
+		else
+			return "gagal";
+	}
 }
 ?>
