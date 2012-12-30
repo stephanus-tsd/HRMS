@@ -131,5 +131,26 @@ class mysql {
 		else
 			return "gagal";
 	}
+	
+	public function getYear() {
+		$query = "SELECT DISTINCT year(tanggal) FROM cuti ORDER BY year(tanggal) ASC";
+		$this->execute($query);
+		$result = $this->get_array();
+		return $result;
+	}
+	
+	public function getReportCuti($year) {
+		$query = "SELECT DISTINCT month(tanggal) AS bulan FROM cuti WHERE year(tanggal) = $year";
+		$this->execute($query);
+		while($row = mysql_fetch_array($this->result))
+		{
+			$query = "SELECT month(tanggal) AS bln,COUNT(username) AS jml FROM cuti WHERE month(tanggal) =".$row['bulan'];
+			$result = mysql_query($query);
+			while($baris = mysql_fetch_array($result)) {
+				$hasil[$baris['bln']] = $baris['jml'];
+			}
+		}
+		return $hasil;
+	}
 }
 ?>
