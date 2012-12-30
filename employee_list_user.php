@@ -75,11 +75,8 @@ function showEmployee() {
 	<tr>
     	<th>Nama</th>
         <th>Jabatan</th>
-        <th>Username</th>
         <th>Alamat</th>
         <th>No Telepon</th>
-        <th>Gaji</th>
-        <th>Jumlah Cuti</th>
     </tr>
     <?php
 	for ($i = 0; $i < $numrows; $i++) {
@@ -87,11 +84,8 @@ function showEmployee() {
 	<tr>
 		<td><?php echo $array['nama'][$i]; ?></td>
     	<td><?php echo $array['jabatan'][$i]; ?></td>
-        <td><?php echo $array['username'][$i]; ?></td>
 		<td><?php echo $array['alamat'][$i]; ?></td>
 		<td><?php echo $array['noTelp'][$i]; ?></td>
-		<td><?php echo $array['gaji'][$i]; ?></td>
-		<td><?php echo $array['jumlahCuti'][$i]; ?></td>
 		</tr>
     <?php
 	}
@@ -104,7 +98,6 @@ Cari berdasarkan : <select name="kolom" onchange="getKey(this.value)">
 <option value="">Semua</option>
 <option value="nama">Nama</option>
 <option value="jabatan">Jabatan</option>
-<option value="username">Username</option>
 <option value="alamat">Alamat</option>
 <option value="noTelp">No. Telp</option>
 </select>
