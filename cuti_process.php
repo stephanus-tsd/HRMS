@@ -85,7 +85,7 @@ if (!$error) {
 		$hasil2 = $sql->setCuti($_SESSION['user'],$date,$total);
 		if ($hasil1 == "berhasil" && $hasil2 == "berhasil")
 		{
-			echo "Data sudah diupdate, Anda memiliki sisa cuti $sisa hari".;
+			echo "Data sudah diupdate, Anda memiliki sisa cuti $sisa hari";
 		}
 	}
 }

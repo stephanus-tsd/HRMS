@@ -49,58 +49,6 @@ function showEmployee() {
 	xmlhttp.open("GET","get_employee.php?key="+key+"&value="+value,true);
 	xmlhttp.send();
 }
-
-function deleteFunc() {
-	var xmlhttp;
-	var user = document.getElementById("inputUserDelete").value;
-
-	if (user == "")
-	{
-		alert("Field masih kosong");
-	}
-	else
-	{
-		var r = confirm("Are you sure to delete user : " + user + " ?");
-		if (r == true) {
-			
-			if(window.XMLHttpRequest) {
-				xmlhttp = new XMLHttpRequest();
-			}
-			else {
-				xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
-			}
-			
-			xmlhttp.open("GET","delete_employee.php?user="+user, false);
-			xmlhttp.send(null);
-			setTimeout(function(){alert("Mohon Tunggu")},5000);
-			xmlhttp.onreadystatechange=function() {
-				if (xmlhttp.readyState==4 || xmlhttp.status==200) {
-					
-						status = xmlhttp.responseText;
-						if(status == "OK") {
-							alert("Delete berhasil");
-						}
-						else if(status == "Gagal") {
-							alert("Delete gagal");
-						}
-				}
-			}
-		}
-		else {
-			alert("Delete user dibatalkan");
-		}
-	}
-}
-
-function editFunc() {
-	var username = document.getElementById("inputUserEdit").value;
-	if (username == "") {
-		alert("Field masih kosong");
-	}
-	else {
-		window.location.assign("edit_employee.php?username="+username);
-	}
-}
 </script>
 </head>
 
@@ -163,23 +111,6 @@ Cari berdasarkan : <select name="kolom" onchange="getKey(this.value)">
 <input type="text" name="nilai" id="nilai" />
 <input type="button" onclick="showEmployee()" value="Cari" />
 </form>
-</div>
-<div>
-<fieldset>
-<legend>Edit Karyawan</legend>
-<form method="post">
-Masukkan username dari karyawan yang hendak di-edit : <input type="text" name="username" id="inputUserEdit" /> <input type="button" value="Edit" onclick="editFunc()" />
-</form>
-</fieldset>
-</div>
-<div>
-<fieldset>
-<legend>Delete Karyawan</legend>
-<form>
-Masukkan username dari karyawan yang hendak di-delete : <input type="text" name="user" id="inputUserDelete" />
-<input type="submit" value="Delete" onclick="deleteFunc()" />
-</form>
-</fieldset>
 </div>
 <div id="bottom">
     <?php include "include/footer.php" ?>

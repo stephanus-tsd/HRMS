@@ -2,6 +2,8 @@
 session_start();
 include "include/library.php";
 
+$jabatan = $_SESSION['jabatan'];
+
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
@@ -26,6 +28,23 @@ function getGraph() {
 </head>
 
 <body>
+<div id="top">
+    <?php include "include/header.php" ?>
+</div>
+<div>
+    <?php 
+    if($jabatan == "admin") {
+        include "include/link_admin.php"; 
+    }
+    else if($jabatan == "boss") {
+        include "include/link_boss.php";
+    }
+    else {
+        include "include/link_user.php";
+    }
+    ?>
+</div>
+<br  />
 <div>
 <form>
 <table>
@@ -44,7 +63,8 @@ function getGraph() {
 </form>
 </div>
 <br  />
-<div id="graph">
+<div id="bottom">
+    <?php include "include/footer.php" ?>
 </div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+$jabatan = $_SESSION['jabatan'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -45,6 +47,23 @@ function prosesFunc() {
 </head>
 
 <body>
+<div id="top">
+    <?php include "include/header.php" ?>
+</div>
+<div>
+    <?php 
+    if($jabatan == "admin") {
+        include "include/link_admin.php"; 
+    }
+    else if($jabatan == "boss") {
+        include "include/link_boss.php";
+    }
+    else {
+        include "include/link_user.php";
+    }
+    ?>
+</div>
+<br  />
 <div>
 	<form>
 	<table>
@@ -63,6 +82,9 @@ function prosesFunc() {
     </form>
 </div>
 <div id="warning">
+</div>
+<div id="bottom">
+    <?php include "include/footer.php" ?>
 </div>
 </body>
 </html>

@@ -6,6 +6,7 @@ $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
 $user = $_SESSION['user'];
+$jabatan = $_SESSION['jabatan'];
 
 if ($user == "") {
 	header('location:LOGIN.php');
@@ -28,11 +29,14 @@ $sql->close_connection();
     </div>
     <div>
     	<?php 
-		if ($user == "admin") {
+		if($jabatan == "admin") {
 			include "include/link_admin.php"; 
 		}
+		else if($jabatan == "boss") {
+			include "include/link_boss.php";
+		}
 		else {
-			echo "eror404";
+			include "include/link_user.php";
 		}
 		?>
     </div>
