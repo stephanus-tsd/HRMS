@@ -8,6 +8,8 @@ $user = $_GET["user"];
 
 $result = $sql->deleteEmployee($user);
 
+$sql->close_connection();
+
 if ($result == "berhasil") {
 	echo "OK";
 }

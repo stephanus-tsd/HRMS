@@ -18,6 +18,8 @@ $sql->execute($query);
 $array = $sql->get_array();
 $numrows = $sql->get_num_rows();
 
+$sql->close_connection();
+
 echo "<table border='1'>
 	<tr>
     	<th>Nama</th>

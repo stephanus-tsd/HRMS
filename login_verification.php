@@ -10,6 +10,7 @@ $sql->connect();
 
 $sql->login($user,$pass);
 $hasil = $sql->get_array();
+
 $sql->close_connection();
 
 $_SESSION['nama'] = $hasil['nama'][0];

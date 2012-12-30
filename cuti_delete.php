@@ -10,6 +10,8 @@ $query = "SELECT a.username AS user,nama,jabatan,tanggal,lama FROM karyawan a, c
 $sql->execute($query);
 $array = $sql->get_array();
 $numrows = $sql->get_num_rows();
+
+$sql->close_connection();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

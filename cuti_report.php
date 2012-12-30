@@ -7,6 +7,8 @@ $sql->connect();
 
 $array = $sql->getYear();
 $num = $sql->get_num_rows();
+
+$sql->close_connection();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

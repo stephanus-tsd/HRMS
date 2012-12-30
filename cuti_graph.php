@@ -15,6 +15,8 @@ foreach($array as $key => $value) {
 	$jumlah[] = $value;
 }
 
+$sql->close_connection();
+
 //setup the graph
 $graph = new Graph(600,600);
 $graph->SetMargin(50,100,50,50);

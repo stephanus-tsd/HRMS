@@ -12,6 +12,9 @@ $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
 $result = $sql->signUp($nama,$jabatan,$alamat,$noTelp,$username,$password);
+
+$sql->close_connection();
+
 if ($result == "berhasil") {
 	echo "Insert berhasil <br />";
 	echo "<a href=''>Back to Home</a>";

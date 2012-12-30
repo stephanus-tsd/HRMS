@@ -14,6 +14,8 @@ $jumlahCuti = $jumlahCuti + $lamaCuti;
 $hasil1 = $sql->deleteCuti($user,$tgl);
 $hasil2 = $sql->setJumlahCuti($user,$jumlahCuti);
 
+$sql->close_connection();
+
 if ($hasil1 == "berhasil" && $hasil2 == "berhasil") {
 	echo "OK";
 }

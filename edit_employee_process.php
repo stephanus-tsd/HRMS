@@ -12,6 +12,9 @@ $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
 $result = $sql->editEmployee($nama,$jabatan,$alamat,$noTelp,$username,$password);
+
+$sql->close_connection();
+
 if ($result == "berhasil") {
 	echo "Edit berhasil <br />";
 	echo "<a href='employee_list.php'>Back to Employee List</a>";
