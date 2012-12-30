@@ -72,8 +72,8 @@ jquerycssmenu.buildmenu("myjquerymenu", arrowimages)
 <li><a href="#">Cuti</a>
   <ul>
   <li><a href="cuti.php">Pengajuan Cuti</a></li>
-  <li><a href="#">Report Pengajuan Cuti</a>
-  </li>
+  <li><a href="cuti_delete.php">Cancel Cuti</a></li>
+  <li><a href="cuti_report.php">Report Pengajuan Cuti</a></li>
   </ul>
 </li>
 <li><a href="#">Item 4</a></li>

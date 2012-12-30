@@ -152,5 +152,22 @@ class mysql {
 		}
 		return $hasil;
 	}
+	
+	public function getLamaCuti($user,$tgl) {
+		$query = "SELECT lama FROM cuti WHERE username = '$user' AND tanggal = '$tgl'";
+		$this->execute($query);
+		$result = $this->get_array();
+		return $result['lama'][0];
+	}
+	
+	public function deleteCuti($user,$tgl) {
+		$query = "DELETE FROM cuti WHERE username = '$user' AND tanggal = '$tgl'";
+		if($this->execute($query)) {
+			return "berhasil";
+		}
+		else {
+			return "gagal";
+		}
+	}
 }
 ?>
