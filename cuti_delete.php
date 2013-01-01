@@ -20,11 +20,12 @@ $sql->close_connection();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Cancel Cuti</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
 <script type="text/javascript">
-function deleteFunc() {
+function deleteFunc(user,tgl) {
 	var xmlhttp;
-	var user = document.getElementById("inputUserDelete").value;
-	var tgl = document.getElementById("tglCuti").value;
+	//var user = document.getElementById("inputUserDelete").value;
+	//var tgl = document.getElementById("tglCuti").value;
 	
 	if (user == "" || tgl == "")
 	{
@@ -42,7 +43,7 @@ function deleteFunc() {
 				xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
 			}
 			
-			xmlhttp.open("GET","cuti_delete_process.php?user="+user+"&tgl="+tgl, false);
+			xmlhttp.open("GET","cuti_delete_process.php?user="+user+"&tgl="+tgl, true);
 			xmlhttp.send(null);
 			setTimeout(function(){alert("Mohon Tunggu")},5000);
 			xmlhttp.onreadystatechange=function() {
@@ -51,6 +52,7 @@ function deleteFunc() {
 						status = xmlhttp.responseText;
 						if(status == "OK") {
 							alert("Delete berhasil");
+							window.location.assign("cuti_delete.php");
 						}
 						else if(status == "Gagal") {
 							alert("Delete gagal");
@@ -67,72 +69,59 @@ function deleteFunc() {
 </head>
 
 <body>
-<div id="top">
-    <?php include "include/header.php" ?>
-</div>
-<div>
-    <?php 
-    if($jabatan == "admin") {
-        include "include/link_admin.php"; 
-    }
-    else if($jabatan == "boss") {
-        include "include/link_boss.php";
-    }
-    else {
-        include "include/link_user.php";
-    }
-    ?>
-</div>
-<br  />
-<div>
-<table border="1">
-	<tr>
-    	<td>Username</td>
-        <td>Nama</td>
-        <td>Jabatan</td>
-        <td>Tanggal Cuti</td>
-        <td>Lama Cuti</td>
-    </tr>
-    <?php
-	for($i = 0 ; $i < $numrows ; $i++) {
-	?>
-    <tr>
-    	<td><?php echo $array['user'][$i]; ?></td>
-        <td><?php echo $array['nama'][$i]; ?></td>
-        <td><?php echo $array['jabatan'][$i]; ?></td>
-        <td><?php echo $array['tanggal'][$i]; ?></td>
-        <td><?php echo $array['lama'][$i]; ?></td>
-    </tr>
-    <?php
-	}
-	?>
-</table>
-</div>
-<div>
-<fieldset>
-<legend>Delete Karyawan</legend>
-<form>
-Masukkan data dari karyawan yang cuti hendak di-cancel :
-<table>
-	<tr>
-    	<td>Username</td>
-        <td>:</td>
-        <td><input type="text" name="user" id="inputUserDelete" /></td>
-    </tr>
-    <tr>
-    	<td>Tanggal cuti</td>
-        <td>:</td>
-        <td><input type="text" name="tgl" id="tglCuti" /></td>
-    </tr>
-    <tr>
-    	<td colspan="3"><input type="submit" value="Delete" onclick="deleteFunc()" /></td>
-    </tr>
-</table>
-</form>
-</fieldset>
-</div>
-<div id="bottom">
-    <?php include "include/footer.php" ?>
+<div id="container">
+	<div id="top">
+        <img src="include/HR_logo.gif" />
+            <div style="margin-top:50px; padding-left:40px; padding-right:100px; float:right">
+            <h1>Human Resource Management System</h1>
+            </div>
+    </div>
+    <div>
+        <?php 
+        if($jabatan == "admin") {
+            include "include/link_admin.php"; 
+        }
+        else if($jabatan == "boss") {
+            include "include/link_boss.php";
+        }
+        else {
+            include "include/link_user.php";
+        }
+        ?>
+    </div>
+    <br  />
+    <div id="content">
+        <div>
+        <table border="1">
+            <tr>
+                <td>Username</td>
+                <td>Nama</td>
+                <td>Jabatan</td>
+                <td>Tanggal Cuti</td>
+                <td>Lama Cuti</td>
+                <td>Cancel Cuti</td>
+            </tr>
+            <?php
+            for($i = 0 ; $i < $numrows ; $i++) {
+            ?>
+            <tr>
+                <td><?php echo $array['user'][$i]; ?></td>
+                <td><?php echo $array['nama'][$i]; ?></td>
+                <td><?php echo $array['jabatan'][$i]; ?></td>
+                <td><?php echo $array['tanggal'][$i]; ?></td>
+                <td><?php echo $array['lama'][$i]; ?></td>
+                <td><img src="include/cancel_icon.png" onclick="deleteFunc('<?php echo $array['user'][$i]; ?>','<?php echo $array['tanggal'][$i]; ?>')" /></td>
+            </tr>
+            <?php
+            }
+            ?>
+        </table>
+        </div>
+    </div>
+    <br  />
+    <div id="bottom">
+        <?php include "include/footer.php" ?>
+    </div>
 </div>
 </body>
 </html>

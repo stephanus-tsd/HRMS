@@ -19,69 +19,75 @@ $sql->close_connection();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Edit Employee</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
 </head>
 
 <body>
-<div id="top">
-	<?php include "include/header.php" ?>
-</div>
-<div>
-    <?php 
-    if($jabatan == "admin") {
-        include "include/link_admin.php"; 
-    }
-    else if($jabatan == "boss") {
-        include "include/link_boss.php";
-    }
-    else {
-        include "include/link_user.php";
-    }
-    ?>
-</div>
-<br  />
-<div>
-	<form method="post" action="edit_employee_process.php">
-	<table>
-    	<tr>
-        	<td>Nama</td>
-            <td>:</td>
-            <td><input type="text" name="nama" value="<?php echo $array['nama'][0]; ?>" /></td>
-        </tr>
-        <tr>
-        	<td>Jabatan</td>
-            <td>:</td>
-            <td><input type="text" name="jabatan" value="<?php echo $array['jabatan'][0]; ?>" /></td>
-        </tr>
-        <tr>
-        	<td>Alamat</td>
-            <td>:</td>
-            <td><input type="text" name="alamat" value="<?php echo $array['alamat'][0]; ?>" /></td>
-        </tr>
-        <tr>
-        	<td>No Telepon</td>
-            <td>:</td>
-            <td><input type="text" name="noTelp" value="<?php echo $array['noTelp'][0]; ?>" /></td>
-        </tr>
-    	<tr>
-        	<td>Username</td>
-            <td>:</td>
-            <td><input type="text" name="username" value="<?php echo $array['username'][0]; ?>" readonly="readonly" style="background-color:#CCCCCC" /></td>
-        </tr>
-        <tr>
-        	<td>Password</td>
-            <td>:</td>
-            <td><input type="password" name="password" value="" /></td>
-        </tr>
-        <tr>
-        	<td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
-    </form>
-</div>
-<div id="bottom">
-    <?php include "include/footer.php" ?>
+<div id="container">
+    <div id="top">
+        <img src="include/HR_logo.gif" />
+            <div style="margin-top:50px; padding-left:40px; padding-right:100px; float:right">
+            <h1>Human Resource Management System</h1>
+            </div>
+    </div>
+    <div>
+        <?php 
+        if($jabatan == "admin") {
+            include "include/link_admin.php"; 
+        }
+        else if($jabatan == "boss") {
+            include "include/link_boss.php";
+        }
+        else {
+            include "include/link_user.php";
+        }
+        ?>
+    </div>
+    <br  />
+    <div id="content">
+        <form method="post" action="edit_employee_process.php">
+        <table>
+            <tr>
+                <td>Nama</td>
+                <td>:</td>
+                <td><input type="text" name="nama" value="<?php echo $array['nama'][0]; ?>" /></td>
+            </tr>
+            <tr>
+                <td>Jabatan</td>
+                <td>:</td>
+                <td><input type="text" name="jabatan" value="<?php echo $array['jabatan'][0]; ?>" /></td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td>:</td>
+                <td><input type="text" name="alamat" value="<?php echo $array['alamat'][0]; ?>" /></td>
+            </tr>
+            <tr>
+                <td>No Telepon</td>
+                <td>:</td>
+                <td><input type="text" name="noTelp" value="<?php echo $array['noTelp'][0]; ?>" /></td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td>:</td>
+                <td><input type="text" name="username" value="<?php echo $array['username'][0]; ?>" readonly="readonly" style="background-color:#CCCCCC" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>:</td>
+                <td><input type="password" name="password" value="" /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    <div id="bottom">
+        <?php include "include/footer.php" ?>
+    </div>
 </div>
 </body>
 </html>

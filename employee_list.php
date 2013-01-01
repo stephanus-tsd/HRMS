@@ -20,6 +20,7 @@ $sql->close_connection();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Employee List</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
 <script type="text/javascript">
 var key;
 function getKey(kunci) {
@@ -50,10 +51,8 @@ function showEmployee() {
 	xmlhttp.send();
 }
 
-function deleteFunc() {
+function deleteFunc(user) {
 	var xmlhttp;
-	var user = document.getElementById("inputUserDelete").value;
-
 	if (user == "")
 	{
 		alert("Field masih kosong");
@@ -70,7 +69,7 @@ function deleteFunc() {
 				xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
 			}
 			
-			xmlhttp.open("GET","delete_employee.php?user="+user, false);
+			xmlhttp.open("GET","delete_employee.php?user="+user, true);
 			xmlhttp.send(null);
 			setTimeout(function(){alert("Mohon Tunggu")},5000);
 			xmlhttp.onreadystatechange=function() {
@@ -79,6 +78,7 @@ function deleteFunc() {
 						status = xmlhttp.responseText;
 						if(status == "OK") {
 							alert("Delete berhasil");
+							window.location.assign("employee_list.php");
 						}
 						else if(status == "Gagal") {
 							alert("Delete gagal");
@@ -91,98 +91,86 @@ function deleteFunc() {
 		}
 	}
 }
-
-function editFunc() {
-	var username = document.getElementById("inputUserEdit").value;
-	if (username == "") {
-		alert("Field masih kosong");
-	}
-	else {
-		window.location.assign("edit_employee.php?username="+username);
-	}
-}
 </script>
 </head>
 
 <body>
-<div id="top">
-	<?php include "include/header.php" ?>
-</div>
-<div>
-    <?php 
-    if($jabatan == "admin") {
-        include "include/link_admin.php"; 
-    }
-    else if($jabatan == "boss") {
-        include "include/link_boss.php";
-    }
-    else {
-        include "include/link_user.php";
-    }
-    ?>
-</div>
-<br  />
-<div id="hasil">
-<table border="1">
-	<tr>
-    	<th>Nama</th>
-        <th>Jabatan</th>
-        <th>Username</th>
-        <th>Alamat</th>
-        <th>No Telepon</th>
-        <th>Gaji</th>
-        <th>Jumlah Cuti</th>
-    </tr>
-    <?php
-	for ($i = 0; $i < $numrows; $i++) {
-	?>
-	<tr>
-		<td><?php echo $array['nama'][$i]; ?></td>
-    	<td><?php echo $array['jabatan'][$i]; ?></td>
-        <td><?php echo $array['username'][$i]; ?></td>
-		<td><?php echo $array['alamat'][$i]; ?></td>
-		<td><?php echo $array['noTelp'][$i]; ?></td>
-		<td><?php echo $array['gaji'][$i]; ?></td>
-		<td><?php echo $array['jumlahCuti'][$i]; ?></td>
-		</tr>
-    <?php
-	}
-	?>
-</table>
-</div>
-<div>
-<form>
-Cari berdasarkan : <select name="kolom" onchange="getKey(this.value)">
-<option value="">Semua</option>
-<option value="nama">Nama</option>
-<option value="jabatan">Jabatan</option>
-<option value="username">Username</option>
-<option value="alamat">Alamat</option>
-<option value="noTelp">No. Telp</option>
-</select>
-<input type="text" name="nilai" id="nilai" />
-<input type="button" onclick="showEmployee()" value="Cari" />
-</form>
-</div>
-<div>
-<fieldset>
-<legend>Edit Karyawan</legend>
-<form method="post">
-Masukkan username dari karyawan yang hendak di-edit : <input type="text" name="username" id="inputUserEdit" /> <input type="button" value="Edit" onclick="editFunc()" />
-</form>
-</fieldset>
-</div>
-<div>
-<fieldset>
-<legend>Delete Karyawan</legend>
-<form>
-Masukkan username dari karyawan yang hendak di-delete : <input type="text" name="user" id="inputUserDelete" />
-<input type="submit" value="Delete" onclick="deleteFunc()" />
-</form>
-</fieldset>
-</div>
-<div id="bottom">
-    <?php include "include/footer.php" ?>
+<div id="container">
+    <div id="top">
+        <img src="include/HR_logo.gif" />
+            <div style="margin-top:50px; padding-left:40px; padding-right:100px; float:right">
+            <h1>Human Resource Management System</h1>
+            </div>
+    </div>
+    <div>
+        <?php 
+        if($jabatan == "admin") {
+            include "include/link_admin.php"; 
+        }
+        else if($jabatan == "boss") {
+            include "include/link_boss.php";
+        }
+        else {
+            include "include/link_user.php";
+        }
+        ?>
+    </div>
+    <br />
+    <div id="content">
+        <div id="hasil" style="padding-top:5px;">
+        <table border="1">
+            <tr>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Username</th>
+                <th>Alamat</th>
+                <th>No Telepon</th>
+                <th>Gaji</th>
+                <th>Jumlah Cuti</th>
+                <th>Delete</th>
+            </tr>
+            <form>
+            <?php
+            for ($i = 0; $i < $numrows; $i++) {
+            ?>
+            <tr>
+                <td><a href = "edit_employee.php?username=<?php echo $array['username'][$i]; ?>"><?php echo $array['nama'][$i]; ?></a></td>
+                <td><?php echo $array['jabatan'][$i]; ?></td>
+                <td><?php echo $array['username'][$i]; ?></td>
+                <td><?php echo $array['alamat'][$i]; ?></td>
+                <td><?php echo $array['noTelp'][$i]; ?></td>
+                <td><?php echo $array['gaji'][$i]; ?></td>
+                <td><?php echo $array['jumlahCuti'][$i]; ?></td>
+                <td><img src="include/attributes_delete_icon.png" onclick="deleteFunc('<?php echo $array['username'][$i]; ?>')" /></td>
+                <!--deleteFunc(<?php //echo $array['username'][$i]; ?>)
+                <input type="button" value="Delete" onclick="test()" />
+                -->
+            </tr>
+            <?php
+            }
+            ?>
+            </form>
+        </table>
+        </div>
+        <div style="padding-top:10px;">
+        <form>
+        Cari berdasarkan : <select name="kolom" onchange="getKey(this.value)">
+        <option value="">Semua</option>
+        <option value="nama">Nama</option>
+        <option value="jabatan">Jabatan</option>
+        <option value="username">Username</option>
+        <option value="alamat">Alamat</option>
+        <option value="noTelp">No. Telp</option>
+        </select>
+        <input type="text" name="nilai" id="nilai" />
+        <input type="button" onclick="showEmployee()" value="Cari" />
+        </form>
+        </div>
+    </div>
+    <br  />
+    <div id="bottom">
+        <?php include "include/footer.php" ?>
+    </div>
 </div>
 </body>
 </html>
