@@ -29,7 +29,7 @@ if ($year2 > $year1) {
 				echo "Ada kesalahan dalam tanggal yang anda masukkan";
 			}
 			else {
-				$full = getFullMonth($month1,$tahun1);
+				$full = getFullMonth($month1,$year1);
 				$total = ($full - $day1) + $day2 + 1;
 				$error = false;
 			}
@@ -50,7 +50,7 @@ else if ($year2 == $year1) {
 				echo "Ada kesalahan dalam tanggal yang anda masukkan";
 			}
 			else {
-				$full = getFullMonth($month1,$tahun1);
+				$full = getFullMonth($month1,$year1);
 				$total = ($full - $day1) + $day2 + 1;
 				$error = false;
 			}
@@ -94,34 +94,34 @@ function getFullMonth($bulan,$tahun) {
 	$fullday;
 	if (($tahun%4) == 0) {
 		switch ($bulan) {
-			case "01" : $fullday = 31;
-			case "02" : $fullday = 29;
-			case "03" : $fullday = 31;
-			case "04" : $fullday = 30;
-			case "05" : $fullday = 31;
-			case "06" : $fullday = 30;
-			case "07" : $fullday = 31;
-			case "08" : $fullday = 31;
-			case "09" : $fullday = 30;
-			case "10" : $fullday = 31;
-			case "11" : $fullday = 30;
-			case "12" : $fullday = 31;
+			case "01" : $fullday = 31;break;
+			case "02" : $fullday = 29;break;
+			case "03" : $fullday = 31;break;
+			case "04" : $fullday = 30;break;
+			case "05" : $fullday = 31;break;
+			case "06" : $fullday = 30;break;
+			case "07" : $fullday = 31;break;
+			case "08" : $fullday = 31;break;
+			case "09" : $fullday = 30;break;
+			case "10" : $fullday = 31;break;
+			case "11" : $fullday = 30;break;
+			case "12" : $fullday = 31;break;
 		}
 	}
 	else {
 		switch ($bulan) {
-			case "01" : $fullday = 31;
-			case "02" : $fullday = 28;
-			case "03" : $fullday = 31;
-			case "04" : $fullday = 30;
-			case "05" : $fullday = 31;
-			case "06" : $fullday = 30;
-			case "07" : $fullday = 31;
-			case "08" : $fullday = 31;
-			case "09" : $fullday = 30;
-			case "10" : $fullday = 31;
-			case "11" : $fullday = 30;
-			case "12" : $fullday = 31;
+			case "01" : $fullday = 31;break;
+			case "02" : $fullday = 28;break;
+			case "03" : $fullday = 31;break;
+			case "04" : $fullday = 30;break;
+			case "05" : $fullday = 31;break;
+			case "06" : $fullday = 30;break;
+			case "07" : $fullday = 31;break;
+			case "08" : $fullday = 31;break;
+			case "09" : $fullday = 30;break;
+			case "10" : $fullday = 31;break;
+			case "11" : $fullday = 30;break;
+			case "12" : $fullday = 31;break;
 		}
 	}
 	return $fullday;

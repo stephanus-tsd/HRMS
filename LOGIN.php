@@ -3,10 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LOGIN</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
 </head>
 
 <body>
-<div>
+<div id="content" align="center" style="width:900px; border-color:#FFCC00; float:center; margin:90px auto;">
+	<div id="top">
+        <img src="include/HR_logo.gif" />
+            <div style="margin-top:50px; padding-left:40px; padding-right:100px; float:right">
+            <h1>Human Resource Management System</h1>
+            </div>
+    </div>
+    <hr />
 	<div>Login</div>
 	<div>
         <form method="post" action="login_verification.php">

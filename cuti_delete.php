@@ -61,7 +61,7 @@ function deleteFunc(user,tgl) {
 			}
 		}
 		else {
-			alert("Delete user dibatalkan");
+			alert("Delete cuti dibatalkan");
 		}
 	}
 }

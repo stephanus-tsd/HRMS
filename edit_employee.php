@@ -3,7 +3,7 @@ session_start();
 include "include/library.php";
 
 $user = $_GET["username"];
-$jabatan = $_SESSION['jabatan'];
+$tingkat = $_SESSION['jabatan'];
 
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
@@ -32,10 +32,10 @@ $sql->close_connection();
     </div>
     <div>
         <?php 
-        if($jabatan == "admin") {
+        if($tingkat == "admin") {
             include "include/link_admin.php"; 
         }
-        else if($jabatan == "boss") {
+        else if($tingkat == "boss") {
             include "include/link_boss.php";
         }
         else {
@@ -55,7 +55,32 @@ $sql->close_connection();
             <tr>
                 <td>Jabatan</td>
                 <td>:</td>
-                <td><input type="text" name="jabatan" value="<?php echo $array['jabatan'][0]; ?>" /></td>
+                <td>
+                	<select name="jabatan">
+                    	<?php if ($array['jabatan'][0] == "admin"){
+							  		?>
+                                    <option selected value="admin">Admin</option>
+                                    <option value="boss">Boss</option>
+                                    <option value="user">User</option>
+                                    <?php
+							  }
+							  else if ($array['jabatan'][0] == "boss"){
+							  		?>
+                                    <option selected value="boss">Boss</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                    <?php
+							  }
+							  else {
+							  		?>
+                                    <option selected value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="boss">Boss</option>
+                                    <?php
+							  }
+						?>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Alamat</td>

@@ -44,7 +44,13 @@ $jabatan = $_SESSION['jabatan'];
             <tr>
                 <td>Jabatan</td>
                 <td>:</td>
-                <td><input type="text" name="jabatan" /></td>
+                <td>
+                	<select name="jabatan">
+                    	<option value="admin">Admin</option>
+                        <option value="boss">Boss</option>
+                        <option value="user">User</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Alamat</td>
