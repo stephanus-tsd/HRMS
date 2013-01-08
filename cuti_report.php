@@ -2,7 +2,7 @@
 session_start();
 include "include/library.php";
 
-$jabatan = $_SESSION['jabatan'];
+$jabatan = $_SESSION['level'];
 
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();

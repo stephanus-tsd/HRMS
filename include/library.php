@@ -169,5 +169,35 @@ class mysql {
 			return "gagal";
 		}
 	}
+	
+	public function registerEmployee($nama,$jabatan,$alamat,$noTelp) {
+		$query = "INSERT INTO register VALUES ('$nama','$jabatan','$alamat','$noTelp')";
+		if ($this->execute($query)) {
+			return "berhasil";
+		}
+		else {
+			return "gagal";
+		}
+	}
+	
+	public function deleteRegisterEmployee($nama,$alamat,$noTelp) {
+		$query = "DELETE FROM register WHERE nama = '$nama' AND alamat = '$alamat' AND noTelp = '$noTelp'";
+		if ($this->execute($query)) {
+			return "berhasil";
+		}
+		else {
+			return "gagal";
+		}
+	}
+	
+	public function absen($username,$tglMasuk,$jamMasuk,$tglKeluar,$jamKeluar) {
+		$query = "INSERT INTO absensi VALUES ('$username','$tglMasuk','$jamMasuk','$tglKeluar','$jamKeluar')";
+		if($this->execute($query)) {
+			return "berhasil";
+		}
+		else {
+			return "gagal";
+		}
+	}
 }
 ?>

@@ -74,6 +74,11 @@ jquerycssmenu.buildmenu("myjquerymenu", arrowimages)
   <li><a href="cuti_report.php">Report Pengajuan Cuti</a></li>
   </ul>
 </li>
+<li><a href="#">Absensi</a>
+	<ul>
+    <li><a href="absensi.php">Absensi</a></li>
+    </ul>
+</li>
 <li><a href="LOGOUT.php">Logout</a></li>
 </ul>
 <br style="clear: left" />

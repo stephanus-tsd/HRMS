@@ -13,9 +13,14 @@ $hasil = $sql->get_array();
 
 $sql->close_connection();
 
-$_SESSION['nama'] = $hasil['nama'][0];
-$_SESSION['jabatan'] = $hasil['jabatan'][0];
-$_SESSION['user'] = $user;
+if ($hasil != NULL) {
+	$_SESSION['nama'] = $hasil['nama'][0];
+	$_SESSION['level'] = $hasil['jabatan'][0];
+	$_SESSION['user'] = $user;
+	header('Location:HOME.php');
+}
+else {
+	header('Location:LOGIN.php');
+}
 
-header('Location:HOME.php');
 ?>

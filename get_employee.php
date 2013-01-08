@@ -33,13 +33,14 @@ echo "<table border='1'>
 
 	for ($i = 0; $i < $numrows; $i++) {
 	echo "<tr>";
-		echo "<td>".$array['nama'][$i]."</td>";
+		echo "<td><a href='edit_employee.php?username=".$array['username'][$i]."'>".$array['nama'][$i]."</a></td>";
     	echo "<td>".$array['jabatan'][$i]."</td>";
         echo "<td>".$array['username'][$i]."</td>";
 		echo "<td>".$array['alamat'][$i]."</td>";
 		echo "<td>".$array['noTelp'][$i]."</td>";
 		echo "<td>".$array['gaji'][$i]."</td>";
 		echo "<td>".$array['jumlahCuti'][$i]."</td>";
+		echo "<td><img src='include/attributes_delete_icon.png' onclick='deleteFunc('".$array['username'][$i]."')' /></td>";
 	echo "</tr>";
 	}
 echo "</table>";

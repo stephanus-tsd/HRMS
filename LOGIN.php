@@ -32,6 +32,11 @@
                 <tr>
                 	<td>&nbsp;</td>
                     <td>&nbsp;</td>
+                    <td><a href="register.php" style="font-size:14px">Not an employee</a></td>
+                </tr>
+                <tr>
+                	<td>&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td><input type="submit" /></td>
                 </tr>
             </table>

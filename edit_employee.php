@@ -3,7 +3,7 @@ session_start();
 include "include/library.php";
 
 $user = $_GET["username"];
-$tingkat = $_SESSION['jabatan'];
+$tingkat = $_SESSION['level'];
 
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();

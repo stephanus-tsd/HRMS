@@ -4,23 +4,24 @@ include "include/library.php";
 
 $tingkat = $_SESSION['level'];
 
-$nama = $_POST["nama"];
-$jabatan = $_POST["jabatan"];
-$alamat = $_POST["alamat"];
-$noTelp = $_POST["noTelp"];
-$username = $_POST["username"];
-$password = md5($_POST["password"]);
-
 $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
-$result = $sql->signUp($nama,$jabatan,$alamat,$noTelp,$username,$password);
+$nama = $_POST['nama'];
+$jabatan = $_POST['jabatan'];
+$alamat = $_POST['alamat'];
+$noTelp = $_POST['noTelp'];
+$username = $_POST['username'];
+$password = md5($_POST['password']);
+
+$result1 = $sql->signUp($nama,$jabatan,$alamat,$noTelp,$username,$password);
+$result2 = $sql->deleteRegisterEmployee($nama,$alamat,$noTelp);
 
 $sql->close_connection();
 ?>
 <link rel="stylesheet" href="css/main.css" type="text/css" />
 <div id="container">
-	<div id="top">
+    <div id="top">
         <img src="include/HR_logo.gif" />
             <div style="margin-top:50px; padding-left:40px; padding-right:100px; float:right">
             <h1>Human Resource Management System</h1>
@@ -39,19 +40,20 @@ $sql->close_connection();
         }
         ?>
     </div>
-    <br  />
+    <br />
     <div id="content">
     <?php
-    if ($result == "berhasil") {
-        echo "Insert berhasil <br />";
-        echo "<a href='employee_list.php'>Back to Employee List</a>";
-    }
-    else if ($result == "gagal") {
-        echo "Insert gagal <br />";
-        echo "<a href='employee_list.php'>Back to Employee List</a>";
-    }
-    ?>
+        if ($result1 == "berhasil" && $result2 == "berhasil") {
+            echo "berhasil <br />";
+			echo "<a href='register_acceptance.php'>Klik disini</a> untuk kembali.";
+        }
+        else {
+            echo "gagal <br />";
+			echo "<a href='register_acceptance.php'>Klik disini</a> untuk kembali.";
+        }
+        ?>
     </div>
+    <br  />
     <div id="bottom">
         <?php include "include/footer.php" ?>
     </div>

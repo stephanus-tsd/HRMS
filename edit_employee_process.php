@@ -2,7 +2,7 @@
 session_start();
 include "include/library.php";
 
-$tingkat = $_SESSION['jabatan'];
+$tingkat = $_SESSION['level'];
 
 $nama = $_POST["nama"];
 $jabatan = $_POST["jabatan"];

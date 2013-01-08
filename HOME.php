@@ -6,7 +6,7 @@ $sql = new mysql("localhost","root","","hrm");
 $sql->connect();
 
 $user = $_SESSION['user'];
-$jabatan = $_SESSION['jabatan'];
+$jabatan = $_SESSION['level'];
 
 if ($user == "") {
 	header('location:LOGIN.php');

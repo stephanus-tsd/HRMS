@@ -67,6 +67,7 @@ jquerycssmenu.buildmenu("myjquerymenu", arrowimages)
   <ul>
   <li><a href="employee_list.php">Employee List</a></li>
   <li><a href="input_new_employee.php">Input New Employee</a></li>
+  <li><a href="register_acceptance.php">New Employee Request</a></li>
   </ul>
 </li>
 <li><a href="#">Cuti</a>
@@ -75,6 +76,11 @@ jquerycssmenu.buildmenu("myjquerymenu", arrowimages)
   <li><a href="cuti_delete.php">Cancel Cuti</a></li>
   <li><a href="cuti_report.php">Report Pengajuan Cuti</a></li>
   </ul>
+</li>
+<li><a href="#">Absensi</a>
+	<ul>
+    <li><a href="absensi.php">Absensi</a></li>
+    </ul>
 </li>
 <li><a href="LOGOUT.php">Logout</a></li>
 </ul>
